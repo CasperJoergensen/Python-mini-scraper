@@ -1,5 +1,6 @@
 import threading
 from drScraper import DrScraping as DRS
+from poliScraber import PoliScraping as POS
 
 threads = []
 news_sites = list()
@@ -18,7 +19,12 @@ def start_threads(search_word: str):
     # threads.append(tv2_thread)
     # news_sites.append(tv2_scraper)
     # tv2_thread.start()
-
+    
+    poli_scraper = POS(search_word)
+    poli_thread = threading.Thread(target=poli_scraper.scrape)
+    threads.append(poli_thread)
+    news_sites.append(poli_scraper)
+    poli_thread.start()
 
 def join_threads():
     for thread in threads:
