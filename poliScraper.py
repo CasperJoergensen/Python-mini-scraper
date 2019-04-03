@@ -27,7 +27,7 @@ class PoliScraping:
                     self.articles.append(article)
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-                executor.map(self.get_timestamp, self.articles)
+            executor.map(self.get_timestamp, self.articles)
 
     def get_timestamp(self, article):
         page = get_page(article['href'])
